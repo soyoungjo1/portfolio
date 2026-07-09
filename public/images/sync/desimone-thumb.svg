@@ -1,0 +1,129 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" width="800" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1f1a"/>
+      <stop offset="100%" stop-color="#0a1a14"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#01C49C" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#01C49C" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#01C49C"/>
+      <stop offset="100%" stop-color="#25F5CB"/>
+    </linearGradient>
+    <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#01C49C" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#25F5CB" stop-opacity="0.1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="roundedCard">
+      <rect x="0" y="0" width="800" height="500" rx="0"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bg)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="100" x2="800" y2="100" stroke="#01C49C" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="0" y1="200" x2="800" y2="200" stroke="#01C49C" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="0" y1="300" x2="800" y2="300" stroke="#01C49C" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="0" y1="400" x2="800" y2="400" stroke="#01C49C" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="160" y1="0" x2="160" y2="500" stroke="#01C49C" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="320" y1="0" x2="320" y2="500" stroke="#01C49C" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="480" y1="0" x2="480" y2="500" stroke="#01C49C" stroke-opacity="0.04" stroke-width="1"/>
+  <line x1="640" y1="0" x2="640" y2="500" stroke="#01C49C" stroke-opacity="0.04" stroke-width="1"/>
+
+  <!-- Glow orb top-right -->
+  <circle cx="680" cy="80" r="120" fill="#01C49C" fill-opacity="0.07" filter="url(#glow)"/>
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="800" height="3" fill="url(#accentLine)"/>
+
+  <!-- Left panel: brand info -->
+  <!-- Brand name block -->
+  <rect x="56" y="90" width="4" height="52" rx="2" fill="url(#accentLine)"/>
+  <text x="74" y="118" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="28" fill="#F0FBF7" letter-spacing="-0.5">드시모네몰</text>
+  <text x="74" y="138" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#01C49C" letter-spacing="2">DR.SIMONE MALL</text>
+
+  <!-- Description -->
+  <text x="56" y="178" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#8ab8a8" letter-spacing="0.2">헬스케어 이커머스 — Nuxt 3 SSR 신규 구축</text>
+
+  <!-- Feature cards row -->
+  <!-- Card 1: 결제 시스템 -->
+  <rect x="56" y="210" width="140" height="76" rx="10" fill="url(#cardGrad)" stroke="#01C49C" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="76" y="238" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#01C49C" letter-spacing="1">PAYMENT</text>
+  <text x="76" y="258" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="13" fill="#c8ede4">통합 결제 시스템</text>
+  <text x="76" y="275" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#5a8c7a">토스페이 · 라운드페이</text>
+
+  <!-- Card 2: 구독 -->
+  <rect x="208" y="210" width="140" height="76" rx="10" fill="url(#cardGrad)" stroke="#01C49C" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="228" y="238" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#01C49C" letter-spacing="1">SUBSCRIBE</text>
+  <text x="228" y="258" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="13" fill="#c8ede4">정기구독 전 기능</text>
+  <text x="228" y="275" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#5a8c7a">구독플러스 50% 혜택</text>
+
+  <!-- Card 3: VIP -->
+  <rect x="360" y="210" width="140" height="76" rx="10" fill="url(#cardGrad)" stroke="#01C49C" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="380" y="238" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#01C49C" letter-spacing="1">VIP LOUNGE</text>
+  <text x="380" y="258" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="13" fill="#c8ede4">VIP 라운지</text>
+  <text x="380" y="275" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#5a8c7a">고객 등급제 운영</text>
+
+  <!-- Card 4: Mypage -->
+  <rect x="512" y="210" width="140" height="76" rx="10" fill="url(#cardGrad)" stroke="#01C49C" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="532" y="238" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#01C49C" letter-spacing="1">MYPAGE</text>
+  <text x="532" y="258" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="13" fill="#c8ede4">마이페이지 전 영역</text>
+  <text x="532" y="275" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#5a8c7a">주문 · 배송 · 포인트</text>
+
+  <!-- Divider -->
+  <line x1="56" y1="322" x2="744" y2="322" stroke="#01C49C" stroke-opacity="0.12" stroke-width="1"/>
+
+  <!-- Tech stack chips -->
+  <text x="56" y="352" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#5a8c7a" letter-spacing="1.5">TECH STACK</text>
+
+  <!-- Chips -->
+  <rect x="56" y="364" width="72" height="24" rx="12" fill="url(#chipGrad)" stroke="#01C49C" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="92" y="380" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#25F5CB" text-anchor="middle">Nuxt 3</text>
+
+  <rect x="138" y="364" width="60" height="24" rx="12" fill="url(#chipGrad)" stroke="#01C49C" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="168" y="380" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#25F5CB" text-anchor="middle">Vue 3</text>
+
+  <rect x="208" y="364" width="86" height="24" rx="12" fill="url(#chipGrad)" stroke="#01C49C" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="251" y="380" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#25F5CB" text-anchor="middle">TypeScript</text>
+
+  <rect x="304" y="364" width="52" height="24" rx="12" fill="url(#chipGrad)" stroke="#01C49C" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="330" y="380" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#25F5CB" text-anchor="middle">Pinia</text>
+
+  <rect x="366" y="364" width="42" height="24" rx="12" fill="url(#chipGrad)" stroke="#01C49C" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="387" y="380" font-family="'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#25F5CB" text-anchor="middle">SSR</text>
+
+  <!-- Year + company -->
+  <text x="56" y="434" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#3a7060">헥토헬스케어</text>
+  <text x="56" y="455" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="12" fill="#01C49C" letter-spacing="0.5">2023 –</text>
+
+  <!-- Right side: browser mockup -->
+  <rect x="580" y="88" width="188" height="130" rx="10" fill="#0d2820" stroke="#01C49C" stroke-opacity="0.25" stroke-width="1"/>
+  <!-- Browser bar -->
+  <rect x="580" y="88" width="188" height="22" rx="10" fill="#01C49C" fill-opacity="0.15"/>
+  <rect x="580" y="98" width="188" height="12" fill="#01C49C" fill-opacity="0.15"/>
+  <circle cx="596" cy="99" r="4" fill="#ff6b6b" fill-opacity="0.7"/>
+  <circle cx="610" cy="99" r="4" fill="#ffd93d" fill-opacity="0.7"/>
+  <circle cx="624" cy="99" r="4" fill="#6bcb77" fill-opacity="0.7"/>
+  <!-- URL bar -->
+  <rect x="638" y="93" width="118" height="12" rx="6" fill="#01C49C" fill-opacity="0.1"/>
+  <text x="648" y="103" font-family="monospace" font-size="8" fill="#01C49C" fill-opacity="0.6">desimone.co.kr</text>
+  <!-- Mockup content lines -->
+  <rect x="594" y="122" width="80" height="8" rx="4" fill="#01C49C" fill-opacity="0.4"/>
+  <rect x="594" y="136" width="120" height="5" rx="2" fill="#01C49C" fill-opacity="0.15"/>
+  <rect x="594" y="147" width="100" height="5" rx="2" fill="#01C49C" fill-opacity="0.1"/>
+  <!-- product card shapes -->
+  <rect x="594" y="162" width="48" height="40" rx="4" fill="#01C49C" fill-opacity="0.12" stroke="#01C49C" stroke-opacity="0.2" stroke-width="1"/>
+  <rect x="650" y="162" width="48" height="40" rx="4" fill="#01C49C" fill-opacity="0.08" stroke="#01C49C" stroke-opacity="0.15" stroke-width="1"/>
+  <rect x="706" y="162" width="46" height="40" rx="4" fill="#01C49C" fill-opacity="0.05" stroke="#01C49C" stroke-opacity="0.1" stroke-width="1"/>
+
+  <!-- Bottom border glow -->
+  <rect x="0" y="497" width="800" height="3" fill="url(#accentLine)" opacity="0.4"/>
+</svg>

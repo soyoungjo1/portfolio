@@ -1,0 +1,17 @@
+# Nuxt
+.nuxt/
+.output/
+dist/
+
+# Node
+node_modules/
+
+# Env (모든 .env 변형 차단, 예시만 허용)
+.env
+.env.*
+!.env.example
+
+# Deploy / editor / OS
+.vercel/
+.DS_Store
+*.log
