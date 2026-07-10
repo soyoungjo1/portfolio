@@ -118,8 +118,13 @@
           </div>
           <div class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory" style="scrollbar-width: none;">
 
-            <!-- 드시모네몰 (이미지 준비 중) -->
+            <!-- 드시모네몰 -->
             <NuxtLink to="/works/web/desimone" class="project-card relative overflow-hidden bg-[#1c1c1c]">
+              <img
+                alt="드시모네몰"
+                class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                src="/images/sync/desimone-thumb.png"
+              >
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10"></div>
               <div class="relative z-20 flex flex-col justify-between h-full">
                 <div class="flex justify-between items-start">
@@ -135,8 +140,13 @@
               </div>
             </NuxtLink>
 
-            <!-- 아이스크림몰 (이미지 준비 중) -->
+            <!-- 아이스크림몰 -->
             <NuxtLink to="/works/web/iscreammall" class="project-card relative overflow-hidden bg-[#1a1f1f]">
+              <img
+                alt="아이스크림몰"
+                class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                src="/images/sync/iscreammall-thumb.png"
+              >
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10"></div>
               <div class="relative z-20 flex flex-col justify-between h-full">
                 <div class="flex justify-between items-start">
