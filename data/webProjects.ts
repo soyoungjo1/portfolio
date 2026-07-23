@@ -35,12 +35,6 @@ export const webProjects: WebProject[] = [
     thumb: '/images/sync/desimone-thumb.png',
     banner: '/images/sync/desimone-banner.png',
     url: 'https://mall.drsimonekr.com/',
-    mockups: [
-      'auto/dolbal_mockup1.jpg',
-      'auto/dolbal_mockup2.png',
-      'auto/dolbal_mockup3.jpg',
-      'auto/dolbal_mockup4.jpg',
-    ],
     sections: [
       {
         title: '기술 전환 여정 (PHP → Vue → Nuxt → UI/UX)',
