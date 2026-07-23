@@ -88,7 +88,7 @@
    - 이름 마스킹 유틸(maskTextWithStart), 이모지 필터링, 더보기 페이지네이션
    - 등급 업그레이드 팝업: 로그인 직후 1회 노출 후 API로 완료 처리
 
-5. **CS AI 챗봇** — 행안부 AI API + SSE 스트리밍
+5. **CS AI 챗봇** — 사내 AI 플랫폼(hsuda) AI API + SSE 스트리밍
    - Nuxt 서버 라우트를 SSE 프록시로 활용 (API 키 클라이언트 미노출)
    - 실시간 토큰 스트리밍 + 지수 백오프(Exponential Backoff) 재연결: 5xx 에러 시 최대 3회 (5초/10초/20초)
    - 세션 타임아웃: 5분 아이들 + 10초 유예기간
@@ -106,6 +106,8 @@
    - 정적파일 캐시 1년 설정 (/_nuxt/** max-age=31536000, immutable)
    - CDN preconnect + dns-prefetch
    - 4단계 실험 후 최종 전략 확정 (단순 도입이 아닌 데이터 기반 트레이드오프 분석)
+   - **실측 결과 (실사용자 CrUX, 최근 28일):** LCP 1.3s(모바일)·2.4s(데스크톱)·TTFB 0.1~0.5s — 로딩 지표 Good
+   - 번들 경량화·CLS(레이아웃 안정성) 개선은 UI/UX 리뉴얼에서 진행 예정 (현재 필드 CLS는 모바일에서 개선 여지 있음)
 
 8. **보안 & 모니터링**
    - XSS 방어 2레이어: plugins/sanitize.ts(순수 텍스트) + utils/common.ts sanitizeHtml(리치텍스트)
@@ -229,7 +231,7 @@ Git, Figma, Jira, Axios, DayJS, DOMPurify, heic2any, @nuxt/image
 웹모바일에서 딥링크로 앱을 열고 다시 웹으로 돌아올 때, iOS Safari의 팝업/히스토리 제어가 프론트 통제 밖이라 완전히는 못 잡았다 (결제완료 후 뒤로가기 시 PG창 재노출 문제와 같은 뿌리). `window.open` 타이밍·사용자 제스처 컨텍스트를 맞춰 완화했지만, 근본적으론 네이티브 딥링크 방식(유니버설 링크 vs 스킴) 협의가 필요한 문제로 보고 앱팀과 논의 중. → "다 해결했다"가 아니라 **왜 어려운지 정확히 안다**는 관점으로 답한다.
 
 ### Q. CS AI 챗봇 SSE 스트리밍은 어떻게 구현했나?
-행안부 외부 AI API를 **Nuxt 서버 라우트(`server/api/hi-api.ts`)를 SSE 프록시로 두고** 연동. 클라이언트는 내부 엔드포인트만 호출하고 API 키는 서버 `runtimeConfig`에만 둔다.
+사내 AI 플랫폼(hsuda)의 AI API를 **Nuxt 서버 라우트(`server/api/hi-api.ts`)를 SSE 프록시로 두고** 연동. 클라이언트는 내부 엔드포인트만 호출하고 API 키는 서버 `runtimeConfig`에만 둔다.
 - **보안:** `OP_MAP` 화이트리스트로 허용된 작업만 외부 호출 / 요청 origin CORS 화이트리스트 / `credentials: 'omit'`로 쿠키 미전송
 - **프록시 안정화:** SSE 헤더 `no-cache, no-transform` + `x-accel-buffering: no`로 Nginx·CloudFront 버퍼링 방지, 15초 heartbeat로 타임아웃 방지
 - **재연결(클라):** 5xx 서버 에러 시 지수 백오프 재시도 — `5s → 10s → 20s`, 최대 3회. 4xx 클라 에러는 재연결 대신 재시작 버튼 노출 (에러코드 4000/5000번대 분류)
@@ -251,7 +253,7 @@ Vue 3 / Nuxt 3 프로젝트에서 Claude Code로 협업하기 위해 직접 설�
 
 ### 구성 요소
 
-- **Agents 11개** — dev 라인 5 (api-planner, feature-dev, dev-qa, dev-reviewer, api-gap-analyzer) + uiux 라인 6 (uiux-planner, uiux-publisher, uiux-qa, vue-senior-reviewer, page-planner, page-publisher)
+- **Agents 13개 (3팀)** — dev 라인 5 (api-planner, feature-dev, dev-qa, dev-reviewer, api-gap-analyzer) + uiux 라인 6 (uiux-planner, uiux-publisher, uiux-qa, vue-senior-reviewer, page-planner, page-publisher) + pub 라인 2 (pub-sync, pub-mockup)
 - **Custom Commands 9개 + sub 6개** — `/dev-connect`, `/dev-audit`, `/dev-revise`, `/api-gap`, `/component:create|audit|revise`, `/page:create|audit`, `/design:token-*`, `/sync-docs`, `/git:commit`
 - **Hooks 5개 (PowerShell)** — ASIS 코드 직접 수정 차단 / 자동 포맷 / TS 타입체크 / Claude 변경 추적 / docs 동기화 알림
 - **Rules 13개** — a11y, architecture, components, data-mocking, dev-integration, guide-page, hooks, libraries, pages, popups, spec-scope, style, tokens

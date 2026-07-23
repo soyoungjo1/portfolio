@@ -15,6 +15,8 @@ export interface WebProject {
   url?: string
   mockups?: string[]
   slides?: string[]
+  /** 상세 페이지 "주요 구현" 섹션 — 영역별 상세 (DEV 프로젝트용) */
+  sections?: { title: string; items: string[] }[]
 }
 
 export const webProjects: WebProject[] = [
@@ -29,7 +31,7 @@ export const webProjects: WebProject[] = [
     year: '2023–',
     type: '헬스케어 이커머스',
     tags: ['Vue 3', 'Nuxt 3', 'TypeScript', 'Pinia', 'SSR'],
-    description: '헬스케어 이커머스 프론트엔드를 단독 설계·구현. PHP → Vue 3 SPA → Nuxt 3 SSR → UI/UX 전면 개편의 4단계 기술 전환을 직접 주도. 결제 9종은 계열사 PG에 페이로드를 위임하되 합배송→가격→쿠폰·적립금 재계산으로 이어지는 가격 정합성 파이프라인을 설계했고, 정기구독·VIP 라운지·마이페이지 전 영역과 행안부 AI API를 Nuxt 서버 라우트 SSE 프록시로 연동한 CS 챗봇까지 구현. SSR 전환으로 SEO·LCP 개선, API 키 서버 격리·Telegram 에러 알림 구축.',
+    description: '헬스케어 이커머스 프론트엔드를 단독 설계·구현. PHP → Vue 3 SPA → Nuxt 3 SSR → UI/UX 전면 개편의 4단계 기술 전환을 직접 주도. 결제 9종은 계열사 PG에 페이로드를 위임하되 합배송→가격→쿠폰·적립금 재계산으로 이어지는 가격 정합성 파이프라인을 설계했고, 정기구독·VIP 라운지·마이페이지 전 영역과 사내 AI 플랫폼(hsuda)의 AI API를 Nuxt 서버 라우트 SSE 프록시로 연동한 CS 챗봇까지 구현. SSR 전환으로 SEO·LCP 개선, API 키 서버 격리·Telegram 에러 알림 구축.',
     thumb: '/images/sync/desimone-thumb.png',
     banner: '/images/sync/desimone-banner.png',
     url: 'https://mall.drsimonekr.com/',
@@ -38,6 +40,57 @@ export const webProjects: WebProject[] = [
       'auto/dolbal_mockup2.png',
       'auto/dolbal_mockup3.jpg',
       'auto/dolbal_mockup4.jpg',
+    ],
+    sections: [
+      {
+        title: '기술 전환 여정 (PHP → Vue → Nuxt → UI/UX)',
+        items: [
+          'PHP 스토어를 Vue 3 SPA로 전면 개편 — SNS 로그인(카카오·네이버·애플) 통합, 고객 등급제, vite-plugin-prerender 기반 SEO 대응',
+          'Vue 3 → Nuxt 3 SSR 전환 — SPA의 라우트 수동 관리 부담·SEO 제약을 해소하고, Nuxt 서버 라우트로 외부 API 키를 클라이언트에서 분리',
+          'Nuxt 3 → UI/UX 전면 개편(진행 중) — SCSS 토큰·믹스인 디자인 시스템과 가이드 페이지 구축, 공통 컴포넌트 표준화',
+        ],
+      },
+      {
+        title: '결제 · 정기구독',
+        items: [
+          '결제 9종(토스·라운드·가상계좌·복합결제·재결제) — 계열사 PG 모듈에 페이로드를 위임하되, 주문 금액이 서버와 1원도 어긋나지 않도록 가격 정합성 파이프라인(합배송 → 가격 → 쿠폰·적립금 재계산)을 설계',
+          '적립금은 최종 결제금액의 30% 절삭 규칙까지 백엔드와 맞춰 프론트 계산이 서버 검증을 항상 통과하도록 구현',
+          '정기구독 전 플로우 — 결제수단 변경·건너뛰기·합배송·해지, 결제 실패 시 재결제(최대 5회 리트라이), 쿠폰 교환 개수 제한 등 정책성 기능',
+        ],
+      },
+      {
+        title: 'VIP 라운지 · 마이페이지 · 상품상세',
+        items: [
+          'VIP 라운지 — 등급별 접근 권한 제어, 출석체크, 월별 이벤트',
+          '마이페이지 전 영역 — 주문배송·쿠폰·적립금·1:1문의·회원정보 수정·이름 마스킹·구매 리뷰, memberStore lazy cache로 재호출 최소화',
+          '상품상세 — 재입고 알림+유사상품 추천, 브랜드 섹션 3종, HTML 출력 시스템, 회원 혜택가·최대 할인율 바인딩',
+          '공통 인프라 — SSR-safe Swiper(SsrSwiper·SwiperMarquee) 직접 제작, isMounted 게이트로 hydration 오류 차단',
+        ],
+      },
+      {
+        title: 'CS AI 챗봇 (SSE 스트리밍)',
+        items: [
+          '사내 AI 플랫폼(hsuda)의 chat API를 SSE 스트리밍 CS 챗봇으로 도입 — Nuxt 서버 라우트를 프록시로 두어 API 키 보호',
+          '지수 백오프 재연결(5s→10s→20s, 최대 3회), 세션 타임아웃, 30초 heartbeat로 CloudFront/Nginx 끊김 방지',
+          '모바일에서 답변 도중 끊겨도 서버가 응답을 끝까지 읽어 복구 저장소에 보관 → 재진입 시 복원',
+        ],
+      },
+      {
+        title: 'SEO · 성능 · 보안',
+        items: [
+          'SEO — SSR 메타태그, 도메인 환경별 동적 사이트맵, canonical/alternate',
+          '성능 — @nuxt/image WebP 변환·정적 파일 캐시 1년. 실사용자(CrUX) 기준 LCP 1.3s(모바일)·2.4s(데스크톱)',
+          '보안 — DOMPurify XSS 방어(SSR/CSR 분기), Sentry 에러 모니터링, 텔레그램 에러 알림(Bot token 서버 전용), 하드코딩 키 → env 전환',
+          '마케팅 — Amplitude 퍼널·Airbridge·FlareLane, FlareLane setTag 개인정보 필드 제거',
+        ],
+      },
+      {
+        title: 'AI 오케스트레이션 · 협업',
+        items: [
+          'Nuxt 3 SSR 마이그레이션을 Claude Code 기반 13명(3팀) 서브에이전트 파이프라인으로 수행 — /dev-connect 커맨드로 설계→구현→QA→리뷰 실행, 권한 경계·Hooks·MCP로 규칙 강제, 30여 개 컴포넌트 spec 단일화',
+          '백엔드 6명과 도메인 분리 협업(Swagger 기반 API 스펙 협의), 기획 리뷰 → 개발 → QA 프로세스, commitlint+husky 커밋 컨벤션',
+        ],
+      },
     ],
   },
   {
@@ -53,6 +106,39 @@ export const webProjects: WebProject[] = [
     description: '헬스케어 네이티브 앱 내 드시모네몰 웹뷰 화면 전담 개발. 산소지수 차트를 Chart.js 없이 Vue+CSS로 직접 구현, 포인트교환소 월별 운영(36회+), 영양제 분석·정기구독 플로우, iOS/AOS 앱 브리지 연동(로그인·트래킹·페이지 이동)까지 앱팀과 협업해 담당.',
     thumb: '/images/sync/okhilda-thumb.png',
     banner: '/images/sync/okhilda-banner.png',
+    sections: [
+      {
+        title: '나의 산소지수 — 라이브러리 없이 직접 구현',
+        items: [
+          '수면·컨디션·혈중 산소를 종합한 건강 지수 화면 (일별/주간/월간 3탭)',
+          'Chart.js 등 라이브러리 없이 Vue + CSS만으로 도넛 게이지·수평 바 차트 직접 구현 (DoughnutChart·LineChartDay·HorizonBarOxygen) — 앱 웹뷰 번들 최소화 목적',
+          '데이터 없음·로딩·전날 대비 비교 등 엣지케이스 40+ 커밋으로 전수 처리',
+        ],
+      },
+      {
+        title: '포인트교환소 · 영양제 분석 · 정기구독',
+        items: [
+          '포인트교환소 월별 이벤트·당첨자 발표 페이지 36회+ 상시 운영 (연/월 파라미터로 빌드 없이 콘텐츠 교체 구조 설계)',
+          '설문 기반 영양제 분석 전체 플로우 — 결과·개선 화면, 체험팩 직접구매·장바구니 연동',
+          '정기구독 결제 실패 처리·결제수단 등록·쿠폰 교환 개수 제한',
+        ],
+      },
+      {
+        title: '앱 ↔ 네이티브 브리지',
+        items: [
+          '로그인·트래킹·페이지 이동을 네이티브(iOS/AOS)와 통신하는 브리지를 utils/app.ts 단일 모듈로 통합',
+          '로그인은 요청(appLoginCall)과 응답 콜백(window.responseLogin)을 쌍으로 설계, 애널리틱스·페이지 이동은 호출부 하나 + 환경 분기로 앱/웹 공용',
+          '브리지 미지원 환경(웹 직접 진입)에서도 폴백을 둬 깨지지 않게 — 네이티브 기능은 앱팀과 협업',
+        ],
+      },
+      {
+        title: '앱스토어 심사 · 보안',
+        items: [
+          '웹뷰 콘텐츠의 영양제 문구가 의료 광고 기준에 걸린 리젝을 면책 문구·출처 안내 추가로 대응해 통과',
+          '헤더 보안 정책·허용 도메인 제한, FlareLane 웹푸시 연동',
+        ],
+      },
+    ],
   },
   {
     id: 'iscreammall',
@@ -67,6 +153,29 @@ export const webProjects: WebProject[] = [
     description: '교사 대상 교육 커머스 플랫폼 프론트엔드를 디자인·개발 병행으로 단독 수행. 자체 쇼핑몰 상품·기획전·결제 화면 운영·개선, 지출 증빙·입점사 등 사내 어드민 도구 UI 퍼블리싱과 기능 연결(목록·필터·CRUD), 시즌·프로모션 배너와 상품 상세페이지 디자인, After Effects 기반 로고·이벤트 모션그래픽 제작.',
     thumb: '/images/sync/iscreammall-thumb.png',
     banner: '/images/sync/iscreammall-banner.png',
+    sections: [
+      {
+        title: '자체 쇼핑몰 운영·개발',
+        items: [
+          '교사 대상 교육 커머스몰 프론트엔드 운영·개선 — 상품·기획전·결제 화면',
+          '디자인과 개발을 병행하는 하이브리드 포지션으로, 기획된 콘텐츠를 직접 디자인하고 그대로 화면까지 완결',
+        ],
+      },
+      {
+        title: '사내 어드민 / 관리자 도구',
+        items: [
+          '지출 증빙 관리자 페이지, 입점사 페이지 등 내부 운영 도구 UI 퍼블리싱',
+          '데이터 목록 테이블·필터/검색 폼·CRUD 화면을 JavaScript로 기능 연결',
+        ],
+      },
+      {
+        title: '기획전 · 상세페이지 · 모션',
+        items: [
+          '시즌·프로모션별 기획전과 상품 상세페이지 디자인·퍼블, 프로모션 기간마다 레이아웃 변형 대응',
+          'After Effects 기반 브랜드 로고 애니메이션·이벤트 GIF·시즌 배너 제작',
+        ],
+      },
+    ],
   },
   // ── WEB ───────────────────────────────────────────────────────
   {

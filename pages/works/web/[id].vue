@@ -88,6 +88,28 @@
         </div>
       </section>
 
+      <!-- 주요 구현 (Highlights) -->
+      <section v-if="project.sections?.length" class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop mt-6">
+        <div class="bg-surface-container-low rounded-3xl p-8 md:p-16 border border-outline-variant/20">
+          <p class="font-label-sm text-[12px] uppercase tracking-widest text-secondary mb-8">Highlights</p>
+          <div class="space-y-10">
+            <div v-for="sec in project.sections" :key="sec.title">
+              <h3 class="font-headline-md text-lg md:text-xl text-primary font-bold mb-4">{{ sec.title }}</h3>
+              <ul class="space-y-2.5">
+                <li
+                  v-for="(item, i) in sec.items"
+                  :key="i"
+                  class="flex gap-3 font-body-md text-body-md text-on-surface leading-relaxed"
+                >
+                  <span class="text-secondary mt-1 shrink-0">—</span>
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Mockup Images -->
       <section v-if="project.mockups?.length" class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop mt-6">
         <p class="font-label-sm text-[12px] uppercase tracking-widest text-secondary mb-6">Mockup</p>
