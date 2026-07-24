@@ -37,11 +37,27 @@ export const webProjects: WebProject[] = [
     url: 'https://mall.drsimonekr.com/',
     sections: [
       {
-        title: '기술 전환 여정 (PHP → Vue → Nuxt → UI/UX)',
+        title: '① PHP → Vue 3 SPA 전환·운영 (2023.09~)',
         items: [
-          'PHP 스토어를 Vue 3 SPA로 전면 개편 — SNS 로그인(카카오·네이버·애플) 통합, 고객 등급제, vite-plugin-prerender 기반 SEO 대응',
-          'Vue 3 → Nuxt 3 SSR 전환 — SPA의 라우트 수동 관리 부담·SEO 제약을 해소하고, Nuxt 서버 라우트로 외부 API 키를 클라이언트에서 분리',
-          'Nuxt 3 → UI/UX 전면 개편(진행 중) — SCSS 토큰·믹스인 디자인 시스템과 가이드 페이지 구축, 공통 컴포넌트 표준화',
+          '레거시 PHP 스토어를 Vue 3 SPA로 전환하고, 실서비스를 운영하며 커머스 전 기능을 개발',
+          '단품+정기구독 복합결제 — 등급할인×구독할인 중복 계산, 적립금 10원 단위 계산·절삭을 서버와 일치, 쿠폰 중복 사용 시 금액 증가 버그 방지 등 결제 정합성 확보',
+          'common.js 공통 결제 유틸(sendGet/sendPost JWT 주입·payOrder 장바구니 합치기), 결제 취소 더블클릭 방지·실패 시 마케팅 모듈 오호출 제한',
+          'SNS·간편 로그인 인증, 구매후기(정렬·이미지), 마케팅 이벤트 페이지 100~160번대 상시 개발',
+          'FlareLane 인앱메시지·태그, 앰플리튜드 회원가입 유저 프로퍼티·클릭 이벤트 트래킹',
+          'vite-plugin-prerender로 SPA의 빈 HTML 문제를 빌드타임 정적 생성으로 우회 — 이 방식의 수동 관리 한계가 Nuxt SSR 전환의 직접 동기',
+        ],
+      },
+      {
+        title: '② Vue 3 → Nuxt 3 SSR 신규 구축 (dev-connect, 2024.09~)',
+        items: [
+          'PC·모바일 동시 신규 구축 — Claude Code dev-connect 파이프라인으로 ASIS(Vue SPA)를 TOBE(Nuxt SSR)로 티켓 단위 정합 이관',
+          '컴포넌트 이관 — ASIS 팝업 → TOBE 이관, TermsAgreement 단일 v-model 리팩터 + 약관 서버 공통화, VIP 라운지 연동, gnb를 SSR 호출로 전환',
+          'uiux-티켓 기반 1:1 이식 — 로그인 응답 분기(402·408 알림 매핑), 해지 이유 검증(기타 10자 등), 배송지 토스트 통일 등 ASIS 동작을 정확히 이식해 회귀 방지',
+          '정기구독 — 해지 흐름 개선(방어 팝업 축약·3뎁스 자동진행 방어·토스트 전환), 재결제/결제수단 변경 팝업 배선, 결제 실패 건너뛰기 가드',
+          '결제 — 가상계좌 주문 무효·환불계좌·결제완료 이벤트, 장바구니 구조 재설계, 반품/교환 테이블 구조 변경',
+          '마이페이지 ASIS→TOBE 연동 — 구매리뷰 목록·작성, 온라인 적립금, 회원정보 수정·탈퇴, 위시 담기/품절',
+          'AI 기능 대거 도입(상품 추천·챗봇 만족도 조사·GNB AI)과 @nuxt/image·SSR 기반 LCP 최적화가 이 단계의 핵심 — 상세는 아래 섹션',
+          '진행 중 — Nuxt 3 → UI/UX 전면 개편(SCSS 토큰·믹스인 디자인 시스템, 공통 컴포넌트 표준화)',
         ],
       },
       {
